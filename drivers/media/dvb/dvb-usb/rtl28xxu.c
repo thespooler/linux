@@ -1157,7 +1157,8 @@ enum rtl28xxu_usb_table_entry {
 	RTL2832U_0CCD_00A9,
 	RTL2832U_1F4D_B803,
 	RTL2832U_0CCD_00B3,
-	RTL2838U_1F4D_A803,
+	RTL2832U_0BDA_2838,
+	RTL2838U_1F4D_A803
 };
 
 static struct usb_device_id rtl28xxu_table[] = {
@@ -1176,6 +1177,8 @@ static struct usb_device_id rtl28xxu_table[] = {
 		USB_DEVICE(USB_VID_GTEK, USB_PID_DELOCK_USB2_DVBT)},
 	[RTL2832U_0CCD_00B3] = {
 		USB_DEVICE(USB_VID_TERRATEC, USB_PID_NOXON_DAB_STICK)},
+    [RTL2832U_0BDA_2838] = {
+        USB_DEVICE(USB_VID_REALTEK, USB_PID_REALTEK_RTL2838U)},
 
 	/* RTL2838U */
 	[RTL2838U_1F4D_A803] {
@@ -1293,7 +1296,7 @@ static struct dvb_usb_device_properties rtl28xxu_properties[] = {
 
 		.i2c_algo = &rtl28xxu_i2c_algo,
 
-		.num_device_descs = 4,
+		.num_device_descs = 5,
 		.devices = {
 			{
 				.name = "Terratec Cinergy T Stick Black",
@@ -1317,6 +1320,12 @@ static struct dvb_usb_device_properties rtl28xxu_properties[] = {
 				.name = "AUGUST DVB-T205",
 				.warm_ids = {
 					&rtl28xxu_table[RTL2838U_1F4D_A803],
+				},
+			},
+            {
+				.name = "EzTV645 DVB-T USB dongle",
+				.warm_ids = {
+					&rtl28xxu_table[RTL2832U_0BDA_2838],
 				},
 			},
 		}
